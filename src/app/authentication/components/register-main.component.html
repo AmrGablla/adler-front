@@ -1,0 +1,82 @@
+<div class="register">
+  <div class="page-title mb-5">
+    <h1 class="text-primary font-weight-bold">Start Learning with us!</h1>
+  </div>
+  <div class="mt-5 mb-4">
+    <h6 class="text-capitalize font-weight-bold">Do you have a promo code?</h6>
+    <div class="mt-3">
+      <div class="form-check form-check-inline mr-5">
+        <input class="form-check-input" [(ngModel)]='havePromo' type="radio" name="havePromo" id="inlineRadio1"
+          [value]="true">
+        <label class="form-check-label text-secondary" for="inlineRadio1">Yes</label>
+      </div>
+      <div class="form-check form-check-inline ml-5">
+        <input class="form-check-input" [(ngModel)]='havePromo' type="radio" name="havePromo" id="inlineRadio2"
+          [value]="false">
+        <label class="form-check-label text-secondary" for="inlineRadio2">No</label>
+      </div>
+    </div>
+    <div class="d-flex mt-3 align-items-baseline" *ngIf="havePromo">
+      <input type="text" name="promo" [(ngModel)]="promoCode" class="promo-input adler-form-control form-control"
+        id="inlineFormInputGroupUsername2" placeholder="" (blur)="validatePromoCode(promoCode)" (keyup)="promoBlur = false" >
+      <div *ngIf="validPromoCode" class="ml-4">
+        <i class="fas fa-check text-success"></i>
+        <span class="ml-1">Valid Promo Code</span>
+      </div>
+      <div *ngIf="(!validPromoCode && promoCode && promoBlur)" class="ml-4">
+        <i class="fas fa-times-circle text-danger"></i>
+        <span class="ml-1">Promo code not valid</span>
+      </div>
+    </div>
+  </div>
+  <h6 class="text-capitalize font-weight-bold mb-3">Choose What you want to start with</h6>
+  <div class="d-flex flex-wrap justify-content-start mb-4">
+    <div class="d-flex mr-4 option-card flex-column">
+      <div class="option-title" [ngClass]=" true? 'bg-secondary text-white' : ' text-secondary' ">
+        <div class="d-flex mb-3 justify-content-between">
+          <div>
+            <img src="../../../../assets/images/icons/training.svg" />
+          </div>
+          <div>
+            A1.1
+          </div>
+        </div>
+        <div>
+          Start German Learning
+        </div>
+      </div>
+      <p class="mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac finibus mauris.</p>
+    </div>
+    <div class="d-flex mr-4 option-card flex-column">
+      <div class="option-title" [ngClass]=" false? 'bg-secondary text-white' : ' text-secondary' ">
+        <div class="d-flex mb-3 justify-content-between">
+          <div>
+            <img src="../../../../assets/images/icons/exam.svg" />
+          </div>
+        </div>
+        <div>
+          Take Placement Test
+        </div>
+      </div>
+      <p class="mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac finibus mauris.</p>
+    </div>
+    <div class="d-flex mr-4 option-card flex-column">
+      <div class="option-title" [ngClass]=" false? 'bg-secondary text-white' : ' text-secondary' ">
+        <div class="d-flex mb-3 justify-content-between">
+          <div>
+            <img src="../../../../assets/images/icons/online-course.svg" />
+          </div>
+        </div>
+        <div>
+          Alder cards
+        </div>
+      </div>
+      <p class="mt-3">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ac finibus mauris.</p>
+    </div>
+  </div>
+  <button type="submit" class="btn adler-btn mt-5" (click)="continue()">Continue <span class="ml-4"><i
+        class="fas fa-arrow-right"></i></span></button>
+</div>

@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="page-title">
+    <h1 class="text-primary font-weight-bold">Create Quiz</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipi Lorem ipsum dolor sit amet,
+      consectetur adipi
+    </p>
+  </div>
+  <div class="row">
+    <div class="d-flex align-items-end pb-2 ml-4" style="color: #2c3e90">
+      Attached to
+    </div>
+    <div class="col mx-2">
+      <label class="d-block">Level</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="name"
+        [filter]="true"
+        [options]="level"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Choose a level"
+        >"
+      </p-dropdown>
+    </div>
+    <div class="col mx-2">
+      <label class="d-block">Group</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="name"
+        [filter]="true"
+        [options]="group"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Choose a group"
+        >"
+      </p-dropdown>
+    </div>
+    <div class="col mx-2">
+      <label class="d-block">Lesson</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="name"
+        [filter]="true"
+        [options]="lesson"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="Choose a Lesson"
+        >"
+      </p-dropdown>
+    </div>
+    <div class="col mx-2">
+      <label class="d-block">To be submitted within</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="name"
+        [filter]="true"
+        [options]="submittedWithin"
+        filterBy="name"
+        [showClear]="true"
+        placeholder="0    mins"
+        >"
+      </p-dropdown>
+    </div>
+  </div>
+
+  <div class="questionsArea p-3 mt-3">
+    <div class="row">
+      <div class="col-10">
+        <p-table
+          #dt
+          [responsive]="true"
+          [scrollable]="true"
+          [value]="questionsList"
+          [rows]="10"
+          [resizableColumns]="true"
+          [(selection)]="selectedQuestion"
+          [rowHover]="true"
+          dataKey="id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Questions Type</th>
+              <th>Questions Type</th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-questionsList>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <a class="mr-2 mr-3 text-info">
+                  <span
+                    class="p-button-icon fas fa-eye font-weight-bold"
+                    style="color: #2370be"
+                  ></span>
+                </a>
+                <a class="mr-2 mr-3 text-info">
+                  <span
+                    class="p-button-icon fas fa-paper-plane font-weight-bold"
+                    style="color: #207a04"
+                  ></span>
+                </a>
+                <!-- (click)="deleteRequest(request)" -->
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+              In total there are
+            </div>
+          </ng-template>
+          <ng-template pTemplate="emptymessage" let-columns>
+            <!-- <tr>
+            <td [attr.colspan]="columns.length">No records found</td>
+          </tr> -->
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </div>
+  <div class="createBtns">
+    <button class="btn adler-btn my-3 px-5 rounded-pill">
+      Create
+      <i class="fas fa-check"></i>
+    </button>
+  </div>
+</div>

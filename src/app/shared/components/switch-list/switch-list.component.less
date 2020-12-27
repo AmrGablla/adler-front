@@ -1,0 +1,96 @@
+
+@primary : #B4002B;
+@secondary : #2C3E90;
+@secondaryOpacity:  rgba(44,62,144,.6);
+@form-contol-bg : #d1d5d8;
+.switch-wrapper {
+    border-radius:5px;
+    border:1px solid @secondaryOpacity;
+    height:230px;
+}
+.left-side,
+.right-side {
+    width:50%;
+    height:230px;
+    float: left;
+    padding:.8rem;
+    overflow-y: scroll;
+}
+.left-side::-webkit-scrollbar,
+.right-side::-webkit-scrollbar {
+    width: .5em;
+}
+
+.left-side::-webkit-scrollbar-track,
+.right-side::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px transparent;
+    box-shadow: inset 0 0 6px transparent;
+}
+
+.left-side::-webkit-scrollbar-thumb,
+.right-side::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    right:10px;
+    outline: 1px solid transparent;
+}
+.left-side:hover::-webkit-scrollbar-thumb,
+.right-side:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(44,62,144,.4);
+    outline: 1px solid transparent;
+}
+
+.student-box {
+    border: 2px solid @secondaryOpacity;
+    padding: 3px 0 3px 6px;
+    margin-bottom: .5rem;
+    border-radius: 8px;
+    align-items: center;
+    display: flex;
+    position: relative;
+    cursor:pointer;
+    .profile-img {
+        width:2rem;
+        height:2rem;
+        border: 1px solid @secondaryOpacity;
+        overflow: hidden;
+        margin-right: 0.5rem;
+        border-radius: 6px;
+        box-shadow: 0 1px 12px 0 rgba(255, 255, 255, 0.16);
+    }
+    p {
+        display: inline-block;
+        margin:0;
+        // vertical-align: top;
+        // padding-top: 5px;
+    }
+    .close-icon {
+        color:#fff;
+        position: absolute;
+        right:1rem;
+        cursor: pointer;
+    }
+
+}
+.right-side {
+    border-left:2px solid @secondaryOpacity;
+    .student-box {
+        cursor: default;
+    }
+}
+i.profile-img {
+    color:@form-contol-bg;
+    font-size:2rem;
+    border:none;
+    padding-top:2px;
+    overflow:visible;
+    background-color:#fff;
+}
+.right-side {
+    .student-box {
+        background-color:@secondary;
+        color:#fff;
+    }
+}
+.dimmed-text {
+    color: @form-contol-bg;
+}

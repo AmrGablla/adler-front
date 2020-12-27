@@ -1,0 +1,158 @@
+<div class="Progress container">
+  <div class="page-title">
+    <h1 class="text-primary font-weight-bold mt-4 mb-4">
+      Home work for Lesson
+      <!-- {{ homeworkInstance.homework.lessonInstance.serial }} -->
+    </h1>
+     
+  </div>
+  <div class="lesson-Q">
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="Q-title pt-3 text-white position-relative rounded-top">
+          <div
+            class="lesson-address my-auto position-absolute ml-4 font-weight-bold"
+          >
+            {{ homeworkInstance?.homework?.lessonInstance?.lessonDefinition }}
+            <span class="date ml-3">{{
+              homeworkInstance?.homework?.createdDate | date
+            }}</span>
+          </div>
+          <div
+            class="due-date-address position-absolute mr-1 my-auto font-weight-bold"
+          >
+            <p class="d-inline" style="opacity: 0.7; font-size: 12px">
+              Due date
+            </p>
+
+            <span class="due-date mx-3" style="font-size: 14px">{{
+              homeworkInstance?.dueDate | date
+            }}</span>
+          </div>
+        </div>
+        <div class="row p-3 question m-0 justify-content-center">
+          <div class="Answer-sec shadow bg-white col-md-8 col">
+            <div>
+              <h2 class="Q-head pt-3 pb-2">
+                {{ homeworkInstance?.homework?.text }}
+              </h2>
+              <div
+                class="A-instructions d-flex justify-content-between"
+                style="font-size: 12px; opacity: 0.7"
+              >
+                <span>{{ homeworkInstance?.homework?.points }} Points</span>
+                <span
+                  >Minimum no. of characters is
+                  {{ homeworkInstance?.homework?.minCharacters }}
+                </span>
+              </div>
+              <div class="row mt-3">
+                <div class="col">
+                  <textarea
+                    [rows]="15"
+                    [cols]="34"
+                    pInputTextarea
+                    autoResize="autoResize"
+                    placeholder="Write Your Answer .."
+                    [(ngModel)]="homeWorkSubmission.text"
+                    class="rounded p-3 ml-1 col"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="info-flag d-flex justify-content-end text-black-50">
+                <i class="fas fa-info-circle"></i>
+                <i class="fas fa-flag ml-2"></i>
+              </div>
+              <button
+                class="btn btn-outline-secondary mr-3 px-5 rounded-pill"
+                (click)="submitHomeWork(1)"
+              >
+                Save
+              </button>
+              <button
+                type="submit"
+                class="btn adler-btn my-3 px-5 rounded-pill"
+                (click)="submitHomeWork(2)"
+              >
+                Submit
+                <i class="fa fa-arrow-right ml-3"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -------copy of design like UI in zeplin "progress homework"---------- -->
+<!-- <div class="row p-3 question m-0">
+  <div class="Question-sec col-md-8 col">
+    <h2 class="Q-head">
+      Read The Following Paragraph and answer the question ..
+    </h2>
+    <p class="Q-body">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Pellentesque sed ligula laoreet erat blandit imperdiet non non
+      tellus. Duis blandit nunc id arcu aliquet facilisis. Nullam non
+      finibus magna. Nunc sollicitudin mattis varius. Vivamus
+      pellentesque ipsum massa, ac lacinia lacus lacinia eget. Sed
+      dapibus, justo non pharetra varius, velit dui sollicitudin leo, ac
+      finibus nisl neque non dolor. Suspendisse accumsan molestie risus,
+      a varius risus vehicula et. Curabitur consequat eu purus in
+      condimentum. Nulla nunc magna, pharetra at magna vel, auctor
+      imperdiet nibh. Pellentesque egestas justo sed scelerisque
+      imperdiet. Phasellus hendrerit sed lorem eu tristique. Fusce sed
+      ullamcorper mi, tempor ultrices neque. In vitae mi id dui gravida
+      laoreet id eget purus. Phasellus fringilla a odio quis tempor.
+      Pellentesque iaculis mi elit. Donec nec mi sit amet ipsum bibendum
+      tempus. Praesent bibendum vehicula dignissim. Morbi finibus tortor
+      sit amet ornare interdum. Vestibulum erat quam, tempor ac massa
+      in, scelerisque sagittis justo. Donec congue risus sed blandit
+      placerat. Etiam lacus leo, ultricies quis tellus in, cursus
+      egestas tortor. Sed et dui in lacus suscipit porta non a urna.
+      Nunc finibus nunc eget mi semper dapibus. Nulla justo velit,
+      mollis ut sollicitudin eu, lobortis sit amet mi. Vivamus
+      pellentesque maximus ex a volutpat. Pellentesque a ullamcorper
+      ligula. Praesent fringilla non ante vitae consequat. Nunc felis
+      mi, placerat ut ante id, ullamcorper imperdiet enim. In consequat,
+      purus vulputate sollicitudin elementum, quam tortor vehicula
+      mauris, in faucibus erat odio quis mi. Suspendisse potenti.
+    </p>
+  </div>
+  <div class="Answer-sec col-md-4 col shadow bg-white">
+    <p-card>
+      <h2 class="Q-head pt-3 pb-2">
+        ipsum massa, ac lacinia lacus lacinia eget. Sed dapibus, justo?
+      </h2>
+      <div
+        class="A-instructions d-flex justify-content-between"
+        style="font-size: 12px; opacity: 0.7"
+      >
+        <span>25 Points</span>
+        <span>Minimum no. of characters is 200</span>
+      </div>
+      <textarea
+        [rows]="15"
+        [cols]="34"
+        pInputTextarea
+        autoResize="autoResize"
+        placeholder="Write Your Answer .."
+        class="rounded p-3 ml-1"
+      ></textarea>
+      <div class="info-flag d-flex justify-content-end">
+        <i class="fas fa-info-circle"></i>
+        <i class="fas fa-flag ml-2"></i>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary adler-btn my-3 px-5"
+        disabled
+      >
+        submit
+        <i class="fa fa-arrow-right ml-3"></i>
+      </button>
+    </p-card>
+  </div>
+</div> -->

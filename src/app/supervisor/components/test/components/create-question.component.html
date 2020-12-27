@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="page-title">
+    <h1 class="text-primary font-weight-bold">Create Question</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipi Lorem ipsum dolor sit amet,
+      consectetur adipi
+    </p>
+  </div>
+  <div class="mx-2">
+    <label class="d-block">Question Type</label>
+    <!-- [(ngModel)]="selectedCountry" -->
+    <!-- [options]="countries" -->
+    <p-dropdown
+      optionLabel="name"
+      [filter]="true"
+      [options]="questionTypes"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Question Type"
+      >"
+    </p-dropdown>
+  </div>
+  <div class="questionArea p-3 mt-3">
+    <label class="d-block">Question</label>
+
+    <input
+      style="width: 90%"
+      required
+      type="text"
+      name="question"
+      class="form-control adler-form-control"
+      id="question"
+      aria-describedby="question"
+      placeholder="Type the question
+
+      "
+    />
+  </div>
+  <div class="createBtns">
+    <button class="btn btn-outline-secondary mr-3 px-5 rounded-pill">
+      Create
+      <i class="fas fa-check"></i>
+    </button>
+    <button type="submit" class="btn adler-btn my-3 px-5 rounded-pill">
+      Submit
+      <i class="fa fa-arrow-right ml-3"></i>
+    </button>
+  </div>
+</div>

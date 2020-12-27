@@ -1,0 +1,35 @@
+<div class="continer">
+  <div class="row">
+    <div class="rounded pt-4 row d-flex flex-wrap justify-content-center">
+      <div
+        class="quiz-instance-card border d-flex p-3 mb-3 mx-2"
+        pTooltip="This Homework's points will be considered within the final grade."
+        tooltipPosition="right"
+        showDelay="250"
+        hideDelay="500"
+        [routerLink]="['/student/HomeworkDetails']"
+        *ngFor="let quizInstance of quizInstances; index as i"
+      >
+        <div class="quiz-details">
+          <div class="position-relative d-flex justify-content-start">
+            <div class="text-secondary font-weight-bold">Quiz 1</div>
+            <div class="ml-5">05 Dec 2020</div>
+          </div>
+          <div class="mr-3">Lorem ipsum dolor sit amet,</div>
+          <div class="d-flex justify-content-start">
+            <div class="points-tag rounded-circle text-center">
+              <i class="pi pi-star"></i>
+            </div>
+            <div class="ml-3">50 / 70 points</div>
+          </div>
+        </div>
+        <div class="quiz-status m-auto">
+          <div class="quiz-statu-icon text-center rounded-circle m-auto">
+            <i class="pi pi-check"></i>
+          </div>
+          <div class="quiz-statu-text">Solved</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

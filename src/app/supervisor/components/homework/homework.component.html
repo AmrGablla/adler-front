@@ -1,0 +1,149 @@
+<div class="container">
+
+  <div class="card">
+    <!-- <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left">
+        <button
+          class="btn btn-danger ml-3"
+          (click)="deleteSelectedRequest()"
+          [disabled]="!selectedRequest || !selectedRequest.length"
+        >
+          <i class="pi pi-trash"></i>
+        </button>
+      </ng-template>
+    </p-toolbar> -->
+    <p-table
+      #dt
+      [responsive]="true"
+      [value]="bonusRequests"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="[
+        'groupSerial',
+        'level',
+        'teacher',
+        'lesson',
+        'bonusPoint'
+      ]"
+      [(selection)]="selectedRequest"
+      [rowHover]="true"
+      dataKey="id"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          <h5 class="p-m-0">HomeWork bonus requests</h5>
+          <!-- <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              placeholder="Search..."
+            />
+          </span> -->
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- <th>
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> -->
+          <th pSortableColumn="groupInstanceSerial">
+            Group Serial # <p-sortIcon field="groupInstanceSerial"></p-sortIcon>
+          </th>
+          <th pSortableColumn="subLevel">
+            Level <p-sortIcon field="subLevel"></p-sortIcon>
+          </th>
+          <th pSortableColumn="teacherName">
+            Teacher <p-sortIcon field="teacherName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="lessonOrder">
+            Lesson <p-sortIcon field="lessonOrder"></p-sortIcon>
+          </th>
+          <th pSortableColumn="bonusPoints">
+            Bonus Point <p-sortIcon field="bonusPoints"></p-sortIcon>
+          </th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-bonusRequest>
+        <tr>
+          <!-- <td>
+            <p-tableCheckbox [value]="bonusRequest"></p-tableCheckbox>
+          </td> -->
+          <td>{{ bonusRequest.groupInstanceSerial }}</td>
+          <td>{{ bonusRequest.subLevel }}</td>
+          <td>{{ bonusRequest.teacherName }}</td>
+          <td>{{ bonusRequest.lessonOrder }}</td>
+          <td>{{ bonusRequest.bonusPoints }}</td>
+          <td>
+            <div *ngIf="bonusRequest?.bonusPointsStatus != 1 && bonusRequest?.bonusPointsStatus != 2;else elseTemp">
+              <a
+              title="Accept"
+                class="mr-2 mr-3 text-success"
+                (click)="showModal(bonusRequest)"
+              >
+                <span class="p-button-icon pi pi-check-circle font-weight-bold"></span>
+              </a>
+              <a
+              title="Reject"
+                class="mr-2 mr-3 text-danger"
+                (click)="rejectRequest(bonusRequest)"
+              >
+                <span class="p-button-icon pi pi-times-circle font-weight-bold"></span>
+              </a>
+            </div>
+            <ng-template #elseTemp>
+              <span *ngIf="bonusRequest.bonusPointsStatus == 1" class="text-success">Accepted</span>
+              <span *ngIf="bonusRequest.bonusPointsStatus == 2" class="text-danger">Rejected</span>
+            </ng-template>
+            <!-- (click)="deleteRequest(request)" -->
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          In total there are
+          <!-- {{ bonusRequest ? bonusRequest.length : 0 }} requests. -->
+        </div>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <!-- <tr>
+          <td [attr.colspan]="columns.length">No records found</td>
+        </tr> -->
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="requestDialog"
+  [style]="{ width: '450px' }"
+  header="Edit bonus point"
+  styleClass="p-fluid"
+  [modal]="true"
+  (onHide)="hideDialog()"
+>
+  <h6 class="mb-4">Please enter the new bonus point</h6>
+  <input
+    type="number"
+    id=" bonusPoint"
+    [(ngModel)]='newBonusPoints'
+    class="form-control adler-form-control"
+    placeholder="No of bonus point"
+  />
+  <div>
+    <button class="btn adler-btn my-3 px-5 rounded-pill" (click)="acceptRequest()">Accept Request</button>
+    <button
+      class="btn btn-outline-secondary ml-3 px-5 rounded-pill"
+      (click)="hideDialog()"
+    >
+      Cancel
+    </button>
+  </div>
+  <!-- (click)="saveProduct()" -->
+</p-dialog>
+
+<!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

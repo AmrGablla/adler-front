@@ -1,0 +1,145 @@
+<div class="col-12 col-md-6">
+  <div class="d-flex justify-content-around">
+    <div class="mx-2">
+      <label class="d-block">Level</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="Level"
+        [filter]="true"
+        filterBy="Level"
+        [showClear]="true"
+        placeholder="Level"
+        >"
+      </p-dropdown>
+    </div>
+    <div class="mx-2">
+      <label class="d-block">Groups Status</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="Groups Status"
+        [filter]="true"
+        filterBy="Groups Status"
+        [showClear]="true"
+        placeholder="Groups Status"
+        >"
+      </p-dropdown>
+    </div>
+    <div class="mx-2">
+      <label class="d-block">Group Instance</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="Group Instance"
+        [filter]="true"
+        filterBy="Group Instance"
+        [showClear]="true"
+        placeholder="Group Instance"
+        >"
+      </p-dropdown>
+    </div>
+    <div class="mx-2">
+      <label class="d-block">Status</label>
+      <!-- [(ngModel)]="selectedCountry" -->
+      <!-- [options]="countries" -->
+      <p-dropdown
+        optionLabel="Status"
+        [filter]="true"
+        filterBy="Status"
+        [showClear]="true"
+        placeholder="Status"
+        >"
+      </p-dropdown>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <p-table
+    #dt
+    [responsive]="true"
+    [value]="testsList"
+    [rows]="10"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'groupSerial',
+      'level',
+      'teacher',
+      'lesson',
+      'bonusPoint'
+    ]"
+    [(selection)]="selectedTest"
+    [rowHover]="true"
+    dataKey="id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="groupInstanceSerial">
+          Code <p-sortIcon field="code"></p-sortIcon>
+        </th>
+        <th pSortableColumn="studentName">
+          Student Name <p-sortIcon field="studentName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="subLevel">
+          Level <p-sortIcon field="subLevel"></p-sortIcon>
+        </th>
+        <th pSortableColumn="groupInstance">
+          Group Instance <p-sortIcon field="groupInstance"></p-sortIcon>
+        </th>
+        <th pSortableColumn="schedule">
+          Schedule <p-sortIcon field="schedule"></p-sortIcon>
+        </th>
+        <th pSortableColumn="lessonOrder">
+          Lesson <p-sortIcon field="lessonOrder"></p-sortIcon>
+        </th>
+        <th pSortableColumn="studentStatus">
+          Student Status <p-sortIcon field="studentStatus"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-bonusRequest>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="bonusRequest"></p-tableCheckbox>
+        </td>
+        <td>{{ bonusRequest.groupInstanceSerial }}</td>
+        <td>{{ bonusRequest.subLevel }}</td>
+        <td>{{ bonusRequest.teacherName }}</td>
+        <td>{{ bonusRequest.lessonOrder }}</td>
+        <td>{{ bonusRequest.bonusPoints }}</td>
+        <td>
+          <a class="mr-2 mr-3 text-info">
+            <span class="p-button-icon fas fa-eye font-weight-bold"></span>
+          </a>
+          <a class="mr-2 mr-3 text-info">
+            <span class="p-button-icon fas fa-download font-weight-bold"></span>
+          </a>
+          <a class="mr-2 mr-3 text-primary">
+            <span class="p-button-icon fas fa-user font-weight-bold"></span>
+          </a>
+          <a class="mr-2 mr-3 text-danger">
+            <span class="p-button-icon pi pi-trash font-weight-bold"></span>
+          </a>
+          <!-- (click)="deleteRequest(request)" -->
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+        In total there are
+        <!-- {{ bonusRequest ? bonusRequest.length : 0 }} requests. -->
+      </div>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+      <!-- <tr>
+        <td [attr.colspan]="columns.length">No records found</td>
+      </tr> -->
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,27 @@
+<p class="text-secondary mt-2">
+    {{ title }}
+</p>
+<div class="switch-wrapper">
+    <div class="left-side">
+        <div class="student-box" *ngFor="let student of students; let i = index" (click)="switch('switched', i)">
+            <img *ngIf="student.profilephoto else common" class="img-fluid profile-img" src="{{ student.profileImg }}" alt="">
+            <ng-template #common>
+                <i class="profile-img fas fa-user"></i>
+            </ng-template>
+            <p class="font-weight-bold">{{ student.firstName + ' ' + student.lastName }}</p>
+        </div>
+    </div>
+    <div class="right-side">
+        <p *ngIf="leftSideTitle" class="dimmed-text">{{ leftSideTitle }}</p>
+        <div class="student-box" *ngFor="let switched of switchedStudents; let i = index"
+            >
+            <img *ngIf="switched.profileImg else common" class="img-fluid profile-img" src="{{ switched.profileImg }}" alt="">
+            <ng-template #common>
+                <i class="profile-img fas fa-user"></i>
+            </ng-template>
+            <p class="font-weight-bold">{{ switched.firstName + ' ' + switched.lastName }}</p>
+            <i (click)="switch('backToMain', i)" class="close-icon fas fa-times"></i>
+        </div>
+
+    </div>
+</div>

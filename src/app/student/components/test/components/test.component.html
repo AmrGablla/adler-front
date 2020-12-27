@@ -1,0 +1,32 @@
+<div class="continer">
+  <div class="row">
+    <div class="test-type col-12 col-md-3 pt-4">
+      <p>Choose Test Type to view</p>
+      <button
+        type="submit"
+        class="btn test-type-btn my-3 px-5"
+        [routerLink]="['quiz-test']"
+        routerLinkActive="active adler-btn"
+      >
+        Quiz
+      </button>
+      <button
+        class="btn test-type-btn my-3 px-5"
+        [routerLink]="['sublevel-test']"
+        routerLinkActive="active adler-btn"
+      >
+        Sublevel test
+      </button>
+      <button
+        class="btn test-type-btn my-3 px-5"
+        [routerLink]="['final-test']"
+        routerLinkActive="active adler-btn"
+      >
+        Final test
+      </button>
+    </div>
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

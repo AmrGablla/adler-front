@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="page-title">
+    <h1 class="text-primary font-weight-bold">Create Question</h1>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="createSingleQuestion()">
+    <div class="mx-2">
+      <label class="text-secondary">Question Type</label> <br>
+      <p-dropdown [options]="questionTypes" formControlName="QuestionTypeField"
+        (onChange)="showSelectedQuestionType($event)">
+      </p-dropdown>
+    </div>
+    <div class="questionArea p-3 mt-3">
+      <label class="text-secondary">Question</label> <br>
+      <input style="width: 90%" required type="text" name="question" class="form-control adler-form-control"
+        id="question" formControlName="QuestionTextField" aria-describedby="question" placeholder="Type the question" />
+      <div *ngIf="selectedQuetionType.value == 2" class="single-chioce-answers">
+        <div *ngFor="let answer of answers; let i = index" class="single-answer">
+          <p-radioButton [disabled]="editMode[i]" class="align-middle" inputId="answer-{{i}}" [value]="answer" formControlName="choicesField" (onClick)="selectSingleRightAnswer(answer)"></p-radioButton>
+          <label [class.hidden]="editMode[i]" for="answer-{{i}}">{{ answer.name }}</label>
+          <input class="edit-label" [type]="editMode[i] ? 'text': 'hidden'" formControlName="currentLabelField" (blur)="toggleLabelEditingMode()">
+          <i *ngIf="!editMode[i]" (click)="remove(i)" class="pi pi-times"></i>
+        </div>
+        <p class="add-answer text-secondary" (click)="addAnswer()"><i class="pi pi-plus"></i> Add other answer</p>
+      </div>
+
+      <div *ngIf="selectedQuetionType.value == 0" class="single-chioce-answers">
+        <div *ngFor="let answer of answers; let i = index" class="single-answer">
+          <input #input [disabled]="editMode[i]" type="checkbox" name="questionCheckbox" id="answer-{{i}}" formControlName="choicesField" (change)="selectMultipleRightAnswers(answer, input.checked)">
+          <label [class.hidden]="editMode[i]" for="answer-{{i}}">{{ answer.name }}</label>
+          <input class="edit-label" [type]="editMode[i] ? 'text': 'hidden'" formControlName="currentLabelField" (blur)="toggleLabelEditingMode()">
+          <i *ngIf="!editMode[i]" (click)="remove(i)" class="pi pi-times"></i>
+        </div>
+        <p class="add-answer text-secondary" (click)="addAnswer()"><i class="pi pi-plus"></i> Add other answer</p>
+      </div>
+    </div>
+
+    <div class="createBtns">
+      <button type="submit" class="btn adler-btn my-3 px-5 rounded-pill">
+        Create
+        <i class="fa fa-arrow-right ml-3"></i>
+      </button>
+    </div>
+  </form>
+  
+</div>
+

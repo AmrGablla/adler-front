@@ -1,0 +1,52 @@
+<div class="register">
+  <div class="page-title mb-5">
+      <h1 class="text-primary font-weight-bold">Start Learning with us!</h1>
+  </div>
+  <div class="mt-5 mb-4" >
+    <h6 class="text-capitalize font-weight-bold">Start German Learning  A1.1</h6>
+    <div class="mt-2">
+      <p class="d-inline-block mr-2">Choose Month To start</p>
+      <h5 class="d-inline-block mr-2 font-weight-bold text-secondary">
+        <input
+        class="form-control border-0 text-secondary font-weight-bold form-control-sm choose-date"
+        #datepickerFull="bsDatepicker"
+        [bsValue]="now"
+        bsDatepicker
+        [bsConfig]="{ dateInputFormat: 'D MMMM' }">
+      </h5>
+      <button class="d-inline-block mr-2 btn adler-btn-sm"><i class="fas fa-arrow-alt-left"></i></button>
+      <button class="d-inline-block mr-2 btn adler-btn-sm"><i class="fas fa-arrow-alt-right"></i></button>
+    </div>
+  </div>
+  <div class="border rounded p-4 d-flex justify-content-around flex-wrap">
+    <div class="align-items-center border d-flex group-instance-card mr-1 pb-2 pl-0 pr-2 pt-2" [ngClass]="{'mb-3': i < 3 }" *ngFor="let groupInstance of groupInstances;index as i">
+      <div class="left-line ml-1 mr-2">
+
+      </div>
+      <div class="position-relative">
+        <div class="position-absolute checkbox">
+          <div class="form-check form-check-inline mr-0">
+            <input class="form-check-input"  type="radio" name="havePromo" id="inlineRadio2" [value]="false" (change)="selectInstance(groupInstance.id)">
+          </div>
+        </div>
+        <div class="text-secondary font-weight-bold">Starts {{groupInstance.groupDefinition.startDate | date}}</div>
+        <div class="text-secondary font-weight-bold">Ends {{groupInstance.groupDefinition.endDate | date}}</div>
+        <div class="text-primary mb-1">Final Exam in {{groupInstance.groupDefinition.finalTestDate}}</div>
+        <div class="font-weight-bold">
+          <!-- Will be every Sunday and Wednesday
+          From 08:00 am to 11:00 am -->
+          Will be every {{ groupInstance.groupDefinition.timeSlot.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn adler-btn mt-5" (click)="submit()" >Continue <span class="ml-4"><i class="fas fa-arrow-right"></i></span></button>
+  <div class="mt-1">
+    <div class="form-check">
+      <input class="form-check-input position-static mr-2" type="checkbox" name="agreeToPolicy" id="agreetopolicy" [(ngModel)]="agreeToPolicy" [ngModelOptions]="{standalone: true}">
+      <label class="form-check-label" for="agreetopolicy">
+        I agree to the Terms of Use, Refund Policy, and Privacy Policy.
+      </label>
+    </div>
+  </div>
+</div>

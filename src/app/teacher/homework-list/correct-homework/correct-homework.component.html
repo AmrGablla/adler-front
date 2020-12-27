@@ -1,0 +1,95 @@
+<div class="container">
+    <!-- <div class="page-title">
+        <h1 class="text-primary font-weight-bold">Home work Correction</h1>
+
+    </div> -->
+    <div class="lesson-Q mt-5">
+        <div class="card mb-5">
+            <div class="card-body p-0">
+                <div class="Q-title pt-3 text-white position-relative rounded-top">
+                    <div class="lesson-address my-auto position-absolute ml-4 font-weight-bold">
+                        {{ homeworkdetails?.homework?.lessonInstance?.lessonDefinition }}
+                        <span class="date ml-3">{{
+                 homeworkdetails?.dueDate | date
+              }}</span>
+                    </div>
+                    <div class="due-date-address position-absolute mr-1 my-auto font-weight-bold">
+                        <p class="d-inline" style="opacity: 0.7; font-size: 12px">
+                            Submition Date
+                        </p>
+
+                        <span class="due-date mx-3" style="font-size: 14px">
+                            {{ homeworkdetails?.submitionDate | date }}</span>
+                    </div>
+                </div>
+                <div class="row p-3 question m-0 justify-content-center">
+                    <div class="Answer-sec shadow bg-white col-md-5 mr-5">
+                        <div>
+                            <h2 class="Q-head pt-3 pb-2">
+                                <!-- ipsum massa, ac lacinia lacus lacinia eget. Sed dapibus, justo? -->
+                            </h2>
+                            <div class="A-instructions d-flex justify-content-between"
+                                style="font-size: 12px; opacity: 0.7">
+                                <span>
+                                    <!-- {{ homeworkInstance.homework.points }} -->
+                                     Student Answer</span>
+                                <span>Readonly
+                                    <!-- {{ homeworkInstance.homework.minCharacters }} -->
+                                </span>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <textarea readonly [(ngModel)]="studentAnswer" [rows]="15" [cols]="34" pInputTextarea autoResize="autoResize"
+                                         class="rounded p-3 ml-1 col"
+                                         style="background-color: ghostwhite;" ></textarea>
+                                </div>
+                            </div>
+
+                            <div class="info-flag d-flex justify-content-end text-black-50">
+                                <i class="fas fa-info-circle"></i>
+                                <i class="fas fa-flag ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Answer-sec shadow bg-white col-md-5 ">
+                        <div>
+                            <h2 class="Q-head pt-3 pb-2">
+                                <!-- ipsum massa, ac lacinia lacus lacinia eget. Sed dapibus, justo? -->
+                            </h2>
+                            <div class="A-instructions d-flex justify-content-between"
+                                style="font-size: 12px; opacity: 0.7">
+                                <span>
+                                    <!-- {{ homeworkInstance.homework.points }} -->
+                                     Correction</span>
+                                <span>
+                                    <!-- {{ homeworkInstance.homework.minCharacters }} -->
+                                </span>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <textarea [rows]="15" [cols]="34" [(ngModel)]="teacherCorrection" pInputTextarea autoResize="autoResize"
+                                         class="rounded p-3 ml-1 col"></textarea>
+                                </div>
+                                <div class="col">
+                                  <p-inputNumber placeholder="earnedPoints" [(ngModel)]="earnedPoints" [min]="0" [max]="100"></p-inputNumber>
+                                </div>
+                            </div>
+
+                            <!-- <div class="info-flag d-flex justify-content-end text-black-50">
+                                <i class="fas fa-info-circle"></i>
+                                <i class="fas fa-flag ml-2"></i>
+                            </div> -->
+                            <!-- <button class="btn btn-outline-secondary mr-3 px-5 rounded-pill">
+                                Save
+                            </button> -->
+                            <button (click)="getHomeWorkSubmitionObject(teacherCorrection)" type="submit" class="btn adler-btn my-3 px-5 rounded-pill">
+                                Submit
+                                <i class="fa fa-arrow-right ml-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

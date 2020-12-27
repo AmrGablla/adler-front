@@ -1,0 +1,276 @@
+<div class="container pt-5 pb-5">
+
+  <div class="d-flex flex-wrap justify-content-between mb-5">
+    <div>
+      <button
+        class="mr-2 p-button p-button-icon-only p-button-rounded p-button-sm btn-danger btn-sm"
+        (click)="deleteSelectedUsers()"
+        [disabled]="!selectedUsers || !selectedUsers.length"
+      >
+        <i class="pi pi-trash"></i>
+      </button>
+      <button class="btn adler-btn-sm" (click)="openNew()">Add New User</button>
+    </div>
+  </div>
+  <div class="card ">
+
+    <p-table
+      #dt
+      [responsive]="true"
+      [value]="users"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="[
+        'firstName',
+        'lastName',
+        'userName',
+        'status',
+        'email',
+        'phoneNumber'
+      ]"
+      [(selection)]="selectedUsers"
+      [rowHover]="true"
+      dataKey="id"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 4rem;">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="firstName">
+            First Name <p-sortIcon field="firstName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="lastName">
+            Last Name <p-sortIcon field="lastName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="userName">
+            User Name <p-sortIcon field="userName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="email">
+            Email <p-sortIcon field="email"></p-sortIcon>
+          </th>
+          <th pSortableColumn="phoneNumber">
+            Phone Number <p-sortIcon field="phoneNumber"></p-sortIcon>
+          </th>
+          <th style="width: 10wrem;">Actions</th>
+
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="user"></p-tableCheckbox>
+          </td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phoneNumber }}</td>
+          <td>
+            <!-- <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="mr-2 p-button p-button-icon-only p-button-rounded p-button-sm"
+              (click)="editUser(user)"
+            ></button> -->
+            <!-- <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="mr-2 p-button p-button-icon-only p-button-rounded p-button-sm p-button-danger"
+            >
+            </button> -->
+            <a class="mr-2 mr-3 text-secondary"  (click)="editUser(user)"  >
+              <span class="p-button-icon pi pi-pencil font-weight-bold" ></span>
+            </a>
+            <a class="mr-2 mr-3" (click)="deleteUser(user)" >
+              <span class="p-button-icon pi pi-trash text-danger font-weight-bold" ></span>
+            </a>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          In total there are {{ users ? users.length : 0 }} users.
+        </div>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <!-- <tr>
+          <td [attr.colspan]="columns.length">No records found</td>
+        </tr> -->
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="userDialog"
+  [style]="{ width: '450px' }"
+  header="User Details"
+  styleClass="p-fluid"
+  [modal]="true"
+  (onHide)="hideDialog()"
+>
+  <h5 class="mb-4">Please Fill the following form</h5>
+  <form [formGroup]="addAccountForm" (ngSubmit)="onSubmit()">
+    <div class="row form-group">
+      <div class="col-lg-6 col-12">
+        <input
+          type="text"
+          pInputText
+          id="firstName"
+          name="firstName"
+          formControlName="firstName"
+          autofocus
+          class="form-control adler-form-control"
+          placeholder="First name"
+        />
+      </div>
+      <div class="col-lg-6 col-12">
+        <input
+          type="text"
+          pInputText
+          id="lastName"
+          formControlName="lastName"
+          class="form-control adler-form-control"
+          placeholder="Last name"
+        />
+      </div>
+    </div>
+
+    <div class="p-field p-col">
+      <input
+        type="text"
+        pInputText
+        id="userName"
+        formControlName="userName"
+        class="form-control adler-form-control"
+        placeholder="User Name"
+      />
+      <!-- [(ngModel)]="account.userName" -->
+    </div>
+    <div class="p-field p-col">
+      <input
+        type="email"
+        pInputText
+        id="email"
+        formControlName="email"
+        class="form-control adler-form-control"
+        placeholder="Email address"
+      />
+      <!-- [(ngModel)]="account.email" -->
+    </div>
+    <div class="p-field p-col position-relative" *ngIf="!editMode">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        pInputText
+        name="password"
+        id="password"
+        formControlName="password"
+        class="form-control adler-form-control"
+        placeholder="Password"
+      />
+      <span
+        class="show-password position-absolute"
+        (click)="showPassword = !showPassword"
+        ><i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i
+      ></span>
+    </div>
+    <div class="p-field p-col position-relative" *ngIf="!editMode">
+      <input
+        [type]="showConfirmPassword ? 'text' : 'password'"
+        pInputText
+        appConfirmEqualValidator="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        class="form-control adler-form-control"
+        placeholder="Confirm password"
+      />
+      <span
+        class="show-password position-absolute"
+        (click)="showConfirmPassword = !showConfirmPassword"
+        ><i
+          class="fas"
+          [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+        ></i
+      ></span>
+    </div>
+    <div class="p-field p-col">
+      <input
+        type="date"
+        name="birthDate"
+        pInputText
+        id="birthDate"
+        formControlName="birthDate"
+        [required]="true"
+        class="form-control adler-form-control"
+        placeholder="Date of birth"
+        bsDatepicker
+      />
+    </div>
+    <div class="p-field p-col">
+      <input
+        type="text"
+        name="mobileNumber"
+        pInputText
+        id="mobileNumber"
+        formControlName="mobileNumber"
+        class="form-control adler-form-control"
+        placeholder="Mobile number"
+      />
+    </div>
+    <div class="p-field p-col">
+      <input
+        type="text"
+        name="country"
+        pInputText
+        id="country"
+        formControlName="country"
+        class="form-control adler-form-control"
+        placeholder="Country"
+      />
+      <!-- [(ngModel)]="account.country" -->
+    </div>
+    <div class="p-field p-col">
+      <!-- <p-dropdown [(ngModel)]="user.role" inputId="role" placeholder="Select" -->
+
+      <p-dropdown
+        inputId="role"
+        placeholder="Select role"
+        formControlName="role"
+        [options]="roles"
+      >
+        <ng-template let-option pTemplate="item">
+          <span [class]="option.value">{{ option.label }}</span>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="formbtns pt-3">
+      <button class="btn mr-3 px-5 rounded-pill" (click)="hideDialog()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn adler-btn px-5 rounded-pill"
+        *ngIf="!editMode"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        class="btn adler-btn px-5 rounded-pill"
+        *ngIf="editMode"
+        (click)="saveEdit()"
+      >
+        Edit
+      </button>
+    </div>
+  </form>
+  <!-- (click)="saveProduct()" -->
+</p-dialog>
+
+<!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

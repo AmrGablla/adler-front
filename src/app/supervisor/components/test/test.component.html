@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <button
+      class="btn outlined-adler-btn mx-2"
+      style="width: 10rem"
+      [routerLink]="['create-question']"
+      routerLinkActive="active adler-btn"
+    >
+      Create Question
+    </button>
+    <button
+      class="btn outlined-adler-btn mx-2"
+      style="width: 10rem"
+      [routerLink]="['view-questions']"
+      routerLinkActive="active adler-btn"
+    >
+      View Questions
+    </button>
+    <button
+      class="btn outlined-adler-btn mx-2"
+      style="width: 10rem"
+      [routerLink]="['create-quiz']"
+      routerLinkActive="active adler-btn"
+    >
+      Create Quiz
+    </button>
+  </div>
+</div>
+<div><router-outlet></router-outlet></div>
+
+<!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

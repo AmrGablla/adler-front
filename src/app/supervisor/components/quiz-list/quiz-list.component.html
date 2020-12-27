@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="d-flex mb-5 mt-5 align-items-end">
+    <div  class="d-flex flex-column mr-3">
+      <label for="d-flex">Level</label>
+      <p-dropdown
+      [options]="[{label:'Level',value:0}]"
+      ></p-dropdown>
+    </div>
+    <div class="d-flex flex-column mr-3">
+      <label for="">Groups Status</label>
+      <p-dropdown
+      [options]="[{label:'Group Status',value:0}]"
+      ></p-dropdown>
+    </div>
+    <div class="d-flex flex-column mr-3">
+      <label for="">Group Instance</label>
+      <p-dropdown
+      [options]="[{label:'Group Instance',value:0}]"
+      ></p-dropdown>
+    </div>
+    <div class="d-flex flex-column mr-5">
+      <label for="">Quiz Status</label>
+      <p-dropdown
+      [options]="[{label:'Quiz Status',value:0}]"
+      ></p-dropdown>
+    </div>
+    <div>
+      <a class="btn btn btn-outline-secondary mr-3" routerLink="/supervisor/create-question">Create Question</a>
+      <a class="btn btn btn-outline-secondary mr-3" [routerLink]="">View Question</a>
+      <a class="btn btn btn-outline-secondary mr-3" [routerLink]="">Create Quiz</a>
+    </div>
+  </div>
+  <!-- <div class="text-right">
+    <div class="input-group mb-3">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search" ></i>
+        <input type="text" pInputText placeholder="Search">
+      </span>
+    </div>
+  </div> -->
+  <div class="card">
+    <p-table
+      #dt
+      [responsive]="true"
+      [value]="itemList"
+      [rows]="10"
+      [paginator]="true"
+      [globalFilterFields]="[
+        'id',
+        'level',
+        'lesson',
+        'questionsCount',
+        'lessonDefinition',
+        'TestDuration'
+      ]"
+      [(selection)]="selectedItems"
+      [rowHover]="true"
+      dataKey="id"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 4rem;">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pSortableColumn="id" style="width: 6rem;">
+            Id  <p-sortIcon field="id"></p-sortIcon>
+          </th>
+          <th pSortableColumn="level" style="width: 6rem;">
+            Level <p-sortIcon field="level"></p-sortIcon>
+          </th>
+          <th pSortableColumn="lessonDefinition" >
+            lessonDefinition <p-sortIcon field="lessonDefinition"></p-sortIcon>
+          </th>
+          <th pSortableColumn="group" style="width: 10rem;">
+            Group <p-sortIcon field="group"></p-sortIcon>
+          </th>
+          <th pSortableColumn="questionsCount" >
+            questions Count <p-sortIcon field="questionsCount"></p-sortIcon>
+          </th>
+          <th pSortableColumn="TestDuration" style="width: 10rem;">
+            Test Duration <p-sortIcon field="TestDuration"></p-sortIcon>
+          </th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr >
+          <td>
+            <p-tableCheckbox [value]="item"></p-tableCheckbox>
+          </td>
+          <td>{{ item.Id }}</td>
+          <td>{{ item.level }}</td>
+          <td>{{ item.lessonDefinition }}</td>
+          <td>{{ item.group }}</td>
+          <td>{{ item.questionsCount }}</td>
+          <td>{{ item.TestDuration }}</td>
+          <td>
+              <a
+              title="Accept"
+                class="mr-2 mr-3 text-success"
+              >
+                <span class="p-button-icon pi pi-check-circle font-weight-bold"></span>
+              </a>
+              <a
+              title="Reject"
+                class="mr-2 mr-3 text-danger"
+              >
+                <span class="p-button-icon pi pi-times-circle font-weight-bold"></span>
+              </a>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="p-d-flex p-ai-center p-jc-between">
+          In total there are
+          {{ itemList ? itemList.length : 0 }} requests.
+        </div>
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns.length">No records found</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

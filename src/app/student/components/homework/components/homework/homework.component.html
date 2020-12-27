@@ -1,0 +1,66 @@
+<div class="rounded pt-4 row d-flex flex-wrap justify-content-center">
+  <div
+    class="lesson-instance-card border d-flex p-3 mb-3 mx-2"
+    pTooltip="This Homework's points will be considered within the final grade."
+    tooltipPosition="right"
+    showDelay="250"
+    hideDelay="500"
+    *ngFor="let homeworkInstance of homeworkInstances; index as i"
+    (click) = "redirectToHomesubmtion(homeworkInstance)"
+    
+  >
+    <div class="lesson-details mr-4">
+      <div class="position-relative d-flex justify-content-around">
+        <div class="text-secondary font-weight-bold">
+          {{ homeworkInstance.homework.lessonInstance.lessonDefinition }}
+        </div>
+        <div class="ml-1 mr-4">
+          {{ homeworkInstance.homework.createdDate | date }}
+        </div>
+        <div class="text-primary mb-1">
+          Due Date:{{ homeworkInstance.dueDate | date }}
+        </div>
+      </div>
+      <div class="">
+        Lorem ipsum dolor sit amet, {{ homeworkInstance.homework.text }}
+      </div>
+      <div class="d-flex justify-content-start">
+        <div
+          class="points-tag rounded-circle d-flex align-items-center justify-content-center"
+        >
+          <i class="pi pi-star" style="font-size: 10px"></i>
+        </div>
+        <div class="ml-3">
+          9 / {{ homeworkInstance.homework.points }} points
+        </div>
+      </div>
+    </div>
+    <div class="lesson-status m-auto text-center">
+      <div
+        class="lesson-status-icon text-center rounded-circle m-auto fas"
+        style="font-size: 18px"
+        [ngClass]="
+          {
+            Corrected: 'status-Corrected fa-check',
+            Missed: 'status-Missed fa-times',
+            Solved: 'status-Solved fa-check-circle',
+            Pending: 'status-Pending fa-question'
+          }[homeworkInstance.status]
+        "
+      ></div>
+      <div
+        class="lesson-statu-text mt-2"
+        [ngClass]="
+          {
+            Corrected: 'status-Corrected-bg ',
+            Missed: 'status-Missed',
+            Solved: 'status-Solved ',
+            Pending: 'status-Pending '
+          }[homeworkInstance.status]
+        "
+      >
+        {{ homeworkInstance.status }}
+      </div>
+    </div>
+  </div>
+</div>

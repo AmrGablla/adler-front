@@ -1,0 +1,89 @@
+<div class="report-header">
+    <h5 class="text-primary font-weight-bold">Create Lesson Report</h5>
+    <h5 class="text-secondary font-weight-bold">Lesson 4</h5>
+    <p class=" font-weight-bold">17 Dec 2020</p>
+</div>
+<form [formGroup]="form" (click)="createReport()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-secondary">What Done in The Lesson</p>
+                <textarea class="adler-textarea" placeholder="Type What Done in The Lesson" pInputTextarea
+                    formControlName="lessonDoneField"></textarea>
+                <switch-list title="Attendance" leftSideTitle="Absents Students List" [students]="students" (getSwitched)="getAbsents($event)"></switch-list>
+            </div>
+            <div class="col-md-6">
+                <p class="text-secondary">To Do Next Time</p>
+                <textarea class="adler-textarea" placeholder="Type What To Do Next Time" pInputTextarea
+                    formControlName="toDoField"></textarea>
+                <switch-list title="Normal Homework" leftSideTitle="Missed Homework" [students]="clonedStudents" (getSwitched)="getMissedHomework($event)"></switch-list>
+            </div>
+            <div class="col-md-12 mt-3">
+                <h6 class="text-capitalize font-weight-bold">Do you want to add additional homework?</h6>
+                <div class="mt-3">
+                    <div class="form-check form-check-inline mr-5">
+                        <input class="form-check-input" formControlName="additionalHomeworkField" type="radio"
+                            name="additionalHomeworkField" id="inlineRadio1" [value]="true"
+                            (change)="toggleAdditionalHomework(true)">
+                        <label class="form-check-label font-weight-bold text-secondary" for="inlineRadio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline ml-5">
+                        <input class="form-check-input" formControlName="additionalHomeworkField" type="radio"
+                            name="additionalHomeworkField" id="inlineRadio2" [value]="false"
+                            (change)="toggleAdditionalHomework(false)">
+                        <label class="form-check-label font-weight-bold text-secondary" for="inlineRadio2">No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="additionalHomework">
+        <div class="row">
+            <div style="width: 100%;">
+                <div class="col-md-12 mt-3">
+                    <p class="text-secondary">Question Text</p>
+                    <input required name="question-text" formControlName="questionTextField" type="text"
+                        class="form-control adler-form-control" id="questionText" placeholder="Question Text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <p class="text-secondary">Min No of Characters</p>
+                <input required name="min-chars" formControlName="minCharsField" type="text"
+                    class="form-control adler-form-control" id="minChars" placeholder="Min No of Characters">
+            </div>
+            <div class="col-md-4">
+                <p class="text-secondary">No. of Max Points</p>
+                <input required name="points" formControlName="pointsField" type="text"
+                    class="form-control adler-form-control" id="points" placeholder="No. of Max Points">
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-3 pt-5">
+                        <input type="checkbox" name="bonusCheckbox" class="form-check-input"
+                            id="bonusCheckbox" (change)="showBonus = !showBonus">
+                        <label for="bonus">Bonus</label>
+                    </div>
+                    <div *ngIf="showBonus" class="col-md-9">
+                        <p class="text-secondary">Bonus Points</p>
+                        <input required name="bonusPoints" formControlName="bonusPointsField" type="text"
+                            class="form-control adler-form-control" id="bonusPoints" placeholder="Bonus">
+                    </div>
+                </div>
+                
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <button (click)="clicked()" type="submit" class="btn adler-btn font-weight-bold mr-3">Submit <span class="ml-4"><i
+                            class="fas fa-arrow-right"></i></span></button>
+                <button type="button" class="btn outlined-adler-btn btn-adler-sm font-weight-bold" (click)="close()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+<div class="position-relative">
+  <div class="stepper-section position-absolute">
+    <div class="d-flex justify-content-between">
+      <a class="step text-center rounded-circle bg-secondary mr-2 text-white px-2"
+        [routerLink]="['/register/personal-info']" routerLinkActive="active">
+        1
+      </a>
+      <a class="step text-center rounded-circle bg-secondary mr-2 text-white" (click)="pathSelection()"
+        href="javascript:0" routerLinkActive="active">
+        2
+      </a>
+      <a class="step text-center rounded-circle bg-secondary text-white"
+        [routerLink]="['/register/start-from-the-begining']" routerLinkActive="active">
+        3
+      </a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

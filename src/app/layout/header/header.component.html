@@ -1,0 +1,17 @@
+
+<div class="container">
+    <p-menubar [model]="navBarMenuItems">
+        <ng-template pTemplate="start">
+            <a href="#">
+                <img src="../../../assets/images/ADLER ZENTRUM.LOGO.FINAL Vx.png" alt="logo" loading='lazy'>
+            </a>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="topbar-menu">
+                <p-menubar styleClass="username-menu" [model]="items"></p-menubar>
+            </div>
+
+        </ng-template>
+    </p-menubar>
+</div>
+<div class="navbar-border"></div>
